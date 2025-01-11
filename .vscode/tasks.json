@@ -1,0 +1,69 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "Assembler - RetroGameDev",
+          "type": "shell",
+          "presentation": {
+              "echo": true,  // Show output of the assembler task
+              "showReuseMessage": false,
+              "clear": true  // Clear terminal before running this task
+          },
+          "command": "./tools/cc65/bin/cl65",  // Command to compile the assembly code
+          "args": [
+              "-t", "nes",  // Target platform is NES
+              "-g", "${file}",  // Source file
+              "-C", "nes.cfg",  // Configuration file for memory layout
+              "-Ln", "${fileDirname}${pathSeparator}${fileBasenameNoExtension}.lbl",  // Output label file
+              "-o", "${fileDirname}${pathSeparator}${fileBasenameNoExtension}.nes"  // Output NES ROM
+          ]
+      },
+      {
+          "label": "Symbols",
+          "type": "shell",
+          "presentation": {
+              "echo": true,  // Show output of the symbol generation task
+              "showReuseMessage": false,
+              "clear": false  // Do not clear terminal
+          },
+          "command": "./tools/lbl2nl/lbl2nl",  // Command to generate the NES symbol file from the .lbl file
+          "args": [
+              "${fileDirname}${pathSeparator}${fileBasenameNoExtension}.lbl",  // Input label file
+              "${fileDirname}${pathSeparator}${fileBasenameNoExtension}.nes.0.nl"  // Output symbol file for the emulator
+          ],
+          "dependsOn": ["Assembler - RetroGameDev"]  // Ensure this task runs after the assembler task
+      },
+      {
+          "label": "Delete .lbl file",
+          "type": "shell",
+          "command": "rm",  // Command to remove the file
+          "args": [
+              "${fileDirname}${pathSeparator}${fileBasenameNoExtension}.lbl"  // Specify the label file to delete
+          ],
+          "presentation": {
+              "echo": true,  // Show output when the file is deleted
+              "showReuseMessage": false,
+              "clear": false  // Keep the previous terminal output visible
+          },
+          "dependsOn": ["Symbols"]  // Ensure this task runs after the symbol generation task
+      },
+      {
+          "label": "Emulator",
+          "type": "shell",
+          "presentation": {
+              "echo": true,  // Show output of the emulator task
+              "showReuseMessage": false,
+              "clear": false  // Do not clear terminal
+          },
+          "command": "/usr/games/fceux",  // Command to run the NES ROM in the emulator
+          "args": [
+              "${fileDirname}${pathSeparator}${fileBasenameNoExtension}.nes"  // Specify the NES ROM to run
+          ],
+          "dependsOn": ["Delete .lbl file"],  // Ensure this task runs after the .lbl file is deleted
+          "group": {
+              "kind": "build",  // Group this task under "build" so it can be run as a default task
+              "isDefault": true
+          }
+      }
+  ]
+}

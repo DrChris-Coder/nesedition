@@ -1,0 +1,9 @@
+lbl2nl converts the output .lbl file from the cl65 assembler to a
+.nes.0.nl file which is the labels format that the fceux debugger requires.
+It's automatically run as part of the tasks.json build process.
+
+To build from the terminal window use:
+gcc -o ./tools/lbl2nl/lbl2nl ./tools/lbl2nl/lbl2nl.cpp
+
+Then to give access in the codespaces environment use:
+chmod +x ./tools/lbl2nl/lbl2nl

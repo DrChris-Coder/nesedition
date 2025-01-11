@@ -1,0 +1,12 @@
+{
+    "explorer.compactFolders": false,
+    "workbench.editorAssociations":
+    {
+        "*.chr": "hexEditor.hexedit",
+        "*.nam": "hexEditor.hexedit",
+        "*.map": "hexEditor.hexedit",
+        "*.pal": "hexEditor.hexedit"
+    },
+    "editor.tabSize": 2
+}
+

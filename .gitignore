@@ -1,0 +1,8 @@
+# Don't check these into git
+*.nes
+*.lbl
+*.nes.0.nl
+*._*
+~*
+.DS_Store
+!tankrace.nes
