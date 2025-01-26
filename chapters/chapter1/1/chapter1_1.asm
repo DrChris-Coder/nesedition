@@ -37,6 +37,7 @@ gameMainInit:
   LIBSCREEN_SETBACKGROUNDCOLOR_V BLUE ; Set background color to BLUE
   ; Note: You can uncomment the line below to set the background to CYAN instead
   ; jsr gameMainSetBackgroundColor    ; Calls subroutine that sets background to CYAN
+  LIBSCREEN_ENABLEPPU ; Enable PPU rendering (sprites, background)
   ; No 'rts' (return) here, so the code will flow directly into the main game loop
 
 ;===============================================================================
