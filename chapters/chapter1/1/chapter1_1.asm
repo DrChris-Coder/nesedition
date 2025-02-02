@@ -63,7 +63,7 @@ gameMainNMI:
 ; Set Background Color Subroutine
 gameMainSetBackgroundColor:
   LIBSCREEN_SETPPUADDRESS_A BGPALETTE ; Set PPU address to background palette
-  LIBSCREEN_SETPPUDATA_V CYAN         ; Set the first color entry in the palette to CYAN
+  LIBSCREEN_SETPPUDATA_V RED         ; Set the first color entry in the palette to RED
   rts                                 ; Return from subroutine
 
 ;===============================================================================
