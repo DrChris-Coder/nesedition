@@ -34,7 +34,7 @@
 ; Game Initialization
 gameMainInit:
   LIBSCREEN_INIT                      ; Initialize the screen and PPU settings
-  LIBSCREEN_SETBACKGROUNDCOLOR_V BLUE ; Set background color to BLUE
+  LIBSCREEN_SETBACKGROUNDCOLOR_V RED ; Set background color to RED
   ; Note: You can uncomment the line below to set the background to CYAN instead
   ; jsr gameMainSetBackgroundColor    ; Calls subroutine that sets background to CYAN
   LIBSCREEN_ENABLEPPU ; Enable PPU rendering (sprites, background)
@@ -63,7 +63,7 @@ gameMainNMI:
 ; Set Background Color Subroutine
 gameMainSetBackgroundColor:
   LIBSCREEN_SETPPUADDRESS_A BGPALETTE ; Set PPU address to background palette
-  LIBSCREEN_SETPPUDATA_V RED         ; Set the first color entry in the palette to RED
+  LIBSCREEN_SETPPUDATA_V CYAN         ; Set the first color entry in the palette to Cyan
   rts                                 ; Return from subroutine
 
 ;===============================================================================
